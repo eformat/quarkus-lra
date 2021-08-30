@@ -41,6 +41,16 @@ public class GreetingResource {
 
     // Step 2e: An optional callback notifying that the LRA is closing
     @PUT
+    @Path("tidyup")
+    @LRA(value = LRA.Type.MANDATORY)
+    @Compensate
+    public Response compensateWorkAndEnd(@HeaderParam(LRA_HTTP_CONTEXT_HEADER) URI lraId) {
+        log.info("compensate and end {}", lraId);
+        return Response.ok(lraId.toASCIIString()).build();
+    }
+
+    // Step 2e: An optional callback notifying that the LRA is closing
+    @PUT
     @Path("complete")
     @Complete
     public Response completeWork(@HeaderParam(LRA_HTTP_CONTEXT_HEADER) URI lraId) {

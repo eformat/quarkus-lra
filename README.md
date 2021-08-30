@@ -1,6 +1,7 @@
 # quarkus-lra
 
 - https://github.com/quarkusio/quarkusio.github.io/blob/d2cb1bc3c2b8f78c3b1a02fda1f6a44e6a836fca/_posts/2021-08-23-using-lra.adoc
+- https://download.eclipse.org/microprofile/microprofile-lra-1.0-M1/microprofile-lra-spec.html- 
 
 Bootstrap a lra-coordinator
 ```bash
