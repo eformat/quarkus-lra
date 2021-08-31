@@ -26,6 +26,15 @@ public class GreetingResource {
         return "Hello RESTEasy";
     }
 
+    @GET
+    @Path("/start")
+    @LRA(end = false) // Step 3a: The method should run within an LRA
+    @Produces(MediaType.TEXT_PLAIN)
+    public String start(@HeaderParam(LRA_HTTP_CONTEXT_HEADER) URI lraId) {
+        log.info("hello with context {}", lraId);
+        return lraId.toASCIIString();
+    }
+
     // Step 2d: There must be a method to compensate for the action if it's cancelled
     // does not end the LRA
     @PUT
@@ -61,15 +70,6 @@ public class GreetingResource {
     public Response completeWork(@HeaderParam(LRA_HTTP_CONTEXT_HEADER) URI lraId) {
         log.info("completing {}", lraId);
         return Response.ok(lraId.toASCIIString()).build();
-    }
-
-    @GET
-    @Path("/start")
-    @LRA(end = false) // Step 3a: The method should run within an LRA
-    @Produces(MediaType.TEXT_PLAIN)
-    public String start(@HeaderParam(LRA_HTTP_CONTEXT_HEADER) URI lraId) {
-        log.info("hello with context {}", lraId);
-        return lraId.toASCIIString();
     }
 
     @GET
